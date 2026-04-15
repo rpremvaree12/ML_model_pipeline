@@ -1,14 +1,4 @@
-# Business Problem and Scope
-1. Clearly articulate the business problem or challenge that your model will address
-2. Identify the specific stakeholders who would benefit from your solution.
-3. Define the primary goals of your project in terms of business outcomes.
-4. Explain why a machine learning approach is appropriate for this problem.
-5. Describe the dataset/s you've chosen, including their source, size, and key variables.
-6. Connect the dataset (s) ' relevance to your business problem.
-7. Define how you will measure success from both technical and business perspectives.
-
-
-# Introduction
+## Business Problem
 Local Law 97 (LL97), enacted in 2019 and effective in 2024, has been described by the NYC Department of Buildings as one of the most ambitious building emissions laws in the nation. LL97 places carbon caps on buildings larger than 25,000 square feet as these buildings account for over two-thirds of NYC's greenhouse gas emissions. While NYC is known for its iconic skyline with large skyscrapers and corporate buildings, multifamily buildings account for nearly 60% of the buildings covered by LL97. Most of these buildings are low-rise buildings, 7 stories or fewer, and were constructed before 1940 (pre-WWII). Additionally, the Urban Green Council analyzed 2023 benchmarking data and found 57% of all properties currently emit more greenhouse gases than their 2030 cap. This represents a significant financial exposure as buildings that exceed their limits face fines of $268 per metric ton of CO2 over their cap. For example, a 100,000 square foot multifamily building emitting 132 metric tons over its limit would face a $35,376 annual fine. These fines recur every year until the building complies.
 
 The current process for reporting emissions has a potential gap for misreporting data. Building owners submit their own energy consumption data to the city which is then certified by a Registered Design Professional (RDP), an engineer or architect. The RDP, which is hired by the building owner, reviews and signs the submission before it goes to the NYC Department of Buildings (DOB). Because the RDP does not independently verify the utility readings, there is a potential risk of misreporting energy consumption data.
@@ -55,13 +45,6 @@ Business Metrics
 On the operational side, success will be measured by comparing the rate of data corrections or amendments among audited flagged buildings against a random baseline sample. The model will also be evaluated on its ability to quantify the emissions gap between reported values and peer-expected benchmarks across flagged properties. The dollar value of potential penalty recovery — assuming flagged buildings are brought into accurate compliance — will serve as a direct measure of fiscal impact. Finally, prospective validation will compare outcomes from model-selected audits against a control sample after one full compliance cycle, providing the strongest long-run test of the model's real-world utility.
 
 [1] Urban Green Council — urbangreencouncil.org/what-we-do/explore-nyc-building-data-hub/local-law-97-progress/
-
-
-
-
-Machine learning is appropriate here as we can leverage unsupervised models to identify groupings and anomaly reportings for 50,000 or more buildings. While auditing is valuable to ensure compliance to LL97, implementing this targeted auditing practice will lighten auditors caseload. Here we hope to minimize false positives (buildings that labeled as audited but not needing it)
-
-Success will be if the machine learning model is more effective than random sampling for auditing and if the auditing results in a large enough decrease of carbon emissions through enforcement.
 
 
 # Problem Solving Process
