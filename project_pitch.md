@@ -81,9 +81,9 @@ Outline dependencies between different stages of your project
 
 1. April 1, 2026 - Dataset finalization and problem formulation - [4/1/26]
 
-- [X] Dataset acquisition and initial exploration
-- [X] Business problem definition refinement
-- [X] Project repository setup
+- [X] ~~Dataset acquisition and initial exploration~~
+- [X] ~~Business problem definition refinement~~
+- [X] ~~Project repository setup~~
 
 2. Exploratory Data Analysis - [4/3/26]
 
