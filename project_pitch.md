@@ -79,48 +79,48 @@ Outline dependencies between different stages of your project
 
 # Timeline
 
-1. Dataset finalization and problem formulation - [4/1/26]
+1. April 1, 2026 - Dataset finalization and problem formulation - [4/1/26]
 
-[ ] Dataset acquisition and initial exploration
-[ ] Business problem definition refinement
-[ ] Project repository setup
+- [X] Dataset acquisition and initial exploration
+- [X] Business problem definition refinement
+- [X] Project repository setup
 
 2. Exploratory Data Analysis - [4/3/26]
 
-[ ] Comprehensive data profiling
-[ ] Statistical analysis of relationships
-[ ] Creation of informative visualizations
-[ ] Documentation of insights
+- [ ] Comprehensive data profiling
+- [ ] Statistical analysis of relationships
+- [ ] Creation of informative visualizations
+- [ ] Documentation of insights
 
 3. Data Preprocessing - [TIME]
 
-[ ] Data cleaning implementation
-[ ] Feature engineering
-[ ] Pipeline development
-[ ] Data splitting (train/validation/test)
+- [ ] Data cleaning implementation
+- [ ] Feature engineering
+- [ ] Pipeline development
+- [ ] Data splitting (train/validation/test)
 
 4. Model Development - [4/30/26]
-[ ] Implementation of baseline models
-[ ] Algorithm comparison
-[ ] Hyperparameter tuning
-[ ] Cross-validation
+- [ ] Implementation of baseline models
+- [ ] Algorithm comparison
+- [ ] Hyperparameter tuning
+- [ ] Cross-validation
 
 5. Model Evaluation and Refinement - [5/5/26]
 
-[ ] Final model selection
-[ ] Performance evaluation on test data
-[ ] Business metric calculation
-[ ] Interpretation of results
+- [ ] Final model selection
+- [ ] Performance evaluation on test data
+- [ ] Business metric calculation
+- [ ] Interpretation of results
 
-6. Documentation and Reporting - [5/10/26]
+6. May 10, 2026 - Documentation and Reporting
 
-[ ] Code commenting and cleanup
-[ ] Technical report writing
-[ ] Executive presentation development
+- [ ] Code commenting and cleanup
+- [ ] Technical report writing
+- [ ] Executive presentation development
 
-7. Final Review and Submission - [5/12/26]
+7. May 12, 2026 - Final Review and Submission
 
-[ ] Quality assurance
-[ ] Video recording
-[ ] Final submission preparation
-[ ] Identify potential challenges or areas where you might need to conduct additional research or learning.
+- [ ] Quality assurance
+- [ ] Video recording
+- [ ] Final submission preparation
+- [ ] Identify potential challenges or areas where you might need to conduct additional research or learning.
