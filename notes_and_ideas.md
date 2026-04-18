@@ -1,3 +1,80 @@
+Good question — let me clarify how DOB violations fit into the model architecture we've been building.
+
+**DOB violations serve two distinct purposes:**
+
+**1. As a validation signal — not a risk score input**
+
+This is their primary role. After your model flags buildings as anomalous, you cross-reference against DOB violation history to check whether flagged buildings have a disproportionate history of LL84 non-compliance violations compared to unflagged buildings. This tests whether your anomaly scores are finding something real. It's a retrospective check, not a model feature.
+
+**2. Potentially as a weak feature — but carefully**
+
+You could include prior violation history as one input feature among many — a building that has repeatedly filed late or been cited for LL84 non-compliance is arguably higher risk. But this needs care because:
+
+- It introduces a circular logic risk — you're partly predicting future violations using past violations
+- It may encode enforcement bias — buildings in certain neighborhoods may have more violations simply because they've been inspected more, not because they're worse actors
+- It's a behavioral signal, not a physical characteristic signal
+
+**What actually drives the risk score:**
+
+The risk score should primarily come from the anomaly detection layer — how far a building's reported emissions deviate from its peer group given its physical characteristics from PLUTO. That's your core signal. DOB violations are a secondary layer that can adjust the score upward if a building also has a compliance history problem.
+
+**The full picture looks like this:**
+
+- **Anomaly score** — how implausible are the reported emissions given building characteristics
+- **Impact score** — how consequential would a correction be given building size and gap to threshold
+- **Violation history** — optional modifier that can elevate priority for buildings with prior compliance issues
+- **Combined risk score** — weighted combination of the above
+
+------------------------------
+
+
+MVP — Anomaly Detection (what you build and present)
+Unsupervised approach using the LL84 benchmarking data and PLUTO characteristics. The core question is: given what we know about a building's physical characteristics, does its reported emissions look anomalous relative to its peer group?
+Algorithms to evaluate for this layer:
+
+Isolation Forest — well-suited for tabular data anomaly detection, handles high dimensionality, interpretable contamination parameter
+Local Outlier Factor (LOF) — detects anomalies relative to local neighborhood density, which aligns well with your peer group logic
+DBSCAN — density-based clustering that naturally identifies outliers as noise points
+
+All three are available in sklearn, appropriate for intermediate users, and give you the minimum 3 algorithms your rubric requires. Importantly they're all unsupervised so they don't require labeled training data — which is honest given your validation constraints.
+Phase 2 — Combined Approach (what you describe as future work)
+Once DOB violation history accumulates over the first compliance cycles and you have weak proxy labels, you layer in a semi-supervised or supervised classifier — logistic regression, random forest — trained on violation history as a weak label. This is your "where the model goes next" story for the executive presentation.
+Why this architecture is smart for your pitch:
+It's honest about what's feasible now versus later. It shows you understand the problem deeply enough to stage the solution. And it gives you a natural "phase 2 engagement" narrative which is exactly what a consulting pitch wants — the current project leads to future work.
+
+----------------------------
+
+
+1. Internal validation metrics
+These measure whether the model is finding coherent structure, not whether it's finding the "right" answers:
+
+Silhouette score — for clustering/DBSCAN, measures how similar buildings are to their own cluster versus other clusters. Higher is better.
+Anomaly score distribution — for Isolation Forest and LOF, you examine whether scores are meaningfully spread across the population rather than clustered around one value. A model that flags everything or nothing is useless.
+Contamination sensitivity analysis — Isolation Forest requires you to set a contamination parameter (expected proportion of anomalies). You test multiple values and examine how the flagged set changes. Stable flagging across a range of contamination values suggests robust anomalies.
+
+2. External weak label validation
+Cross-reference your flagged buildings against DOB violation history. You're not training on violations — you're checking after the fact whether buildings your model flagged are disproportionately represented in the violation records. This is the closest thing to ground truth you have.
+3. Bunching test — self-validating
+As we discussed earlier, if you find a statistically significant cluster of buildings reporting just below their compliance threshold, that finding validates itself independently of the model. It doesn't require labels at all.
+4. Peer group coherence check
+Manually inspect a sample of flagged buildings. Do they share characteristics that make the anomaly plausible — old heating systems, no recent permits, neighborhood patterns? Do unflagged buildings look genuinely similar to their peer group? This qualitative check is legitimate validation practice.
+5. Synthetic injection testing
+Take a known normal building, artificially deflate its reported emissions by 20-30%, run it through the model, check if it gets flagged. This tests whether the detection logic works mechanically without needing real fraud examples.
+6. Prospective validation — your strongest long-run argument
+The model selects a set of buildings for audit. A random sample is also audited as a control group. After one compliance cycle you compare correction rates, data amendments, and penalty recoveries between the two groups. This is how fraud detection and compliance auditing models are validated in practice across tax authorities, insurance companies, and financial regulators.
+
+
+-------------------
+
+Anomaly score distribution as your primary internal metric
+DOB violation cross-reference as your external weak label check
+Bunching test as a self-validating supplementary finding
+Prospective validation as your honest acknowledgment that full validation requires real-world deployment
+
+
+--------------------------
+
+
 LL84 - annual assessment of water and energy efficiency
 
 LL97
